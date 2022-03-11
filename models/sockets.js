@@ -19,10 +19,13 @@ class Sockets {
 
             socket.on('marcador-nuevo', (marcador) => {
                 this.marcadores.agregarMarcador(marcador)
-                sockets.broadcast.emit('nuevo-marca', marcador)
+                sockets.broadcast.emit('marcador-nuevo', marcador)
             })
 
-            
+            socket.on('marcador.actualizado', (marcador) => {
+                this.marcadores.actualizarMarcador(marcador)
+                socket.broadcast.emit('marcador-actualizado', marcador)
+            })
             
         
         });
